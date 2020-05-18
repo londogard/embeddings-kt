@@ -28,6 +28,7 @@ dependencies {
 
     testImplementation("org.amshove.kluent:kluent:$kluentVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test:1.3.72")
+    testImplementation("junit:junit:4.12")
 }
 
 configure<JavaPluginConvention> {
