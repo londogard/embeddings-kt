@@ -4,13 +4,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     `maven-publish`
     id("org.jetbrains.dokka") version "0.9.17"
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.20"
 }
 
 group = "com.londogard"
 version = "1.0-SNAPSHOT"
 val kluentVersion = "1.61"
-val smileVersion = "2.4.0"
+val smileVersion = "2.6.0"
 
 repositories {
     jcenter()
@@ -27,7 +27,7 @@ dependencies {
     implementation("com.github.haifengl:smile-kotlin:$smileVersion")
 
     testImplementation("org.amshove.kluent:kluent:$kluentVersion")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:1.3.72")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.4.20")
     testImplementation("junit:junit:4.12")
 }
 

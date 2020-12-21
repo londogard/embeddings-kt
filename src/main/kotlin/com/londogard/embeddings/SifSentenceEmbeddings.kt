@@ -3,6 +3,7 @@ package com.londogard.summarize.embeddings
 import com.londogard.embeddings.*
 import com.londogard.embeddings.mMul
 import com.londogard.embeddings.sumByColumns
+import smile.math.blas.Layout
 import smile.math.matrix.Matrix
 import smile.nlp.bag
 import smile.nlp.tfidf
@@ -48,7 +49,8 @@ class SifSentenceEmbeddings(val embeddings: Embeddings) : SentenceEmbeddings {
         val words = corpus.flatMap { bag -> bag.keys }.distinct()
         val bags = corpus.map { vectorize(words.toTypedArray(), it) }
         val vectors = tfidf(bags)
-        val vector = Matrix.of(vectors.toTypedArray()).colSums()
+
+        val vector = Matrix(embeddings.dimensions, vectors.size, vectors.toTypedArray()).colSums()
         val vecMax = vector.max() ?: 1.0
         tfidfMap = vector
             .map { it / vecMax }
@@ -80,7 +82,7 @@ class SifSentenceEmbeddings(val embeddings: Embeddings) : SentenceEmbeddings {
             .normalize()
             .map(Float::toDouble).toDoubleArray()
 
-        val m = Matrix.of(arrayOf(weightedArray))
+        val m = Matrix(weightedArray)
 
         return m
             .sub(m.mul(pca.projection.transpose()).mul(pca.projection)) // TODO perhaps remove rest of PCA?
