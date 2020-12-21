@@ -10,7 +10,7 @@ plugins {
 group = "com.londogard"
 version = "1.0-SNAPSHOT"
 val kluentVersion = "1.61"
-val smileVersion = "2.4.0"
+val smileVersion = "2.6.0"
 
 repositories {
     jcenter()
