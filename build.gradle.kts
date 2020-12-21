@@ -27,7 +27,7 @@ dependencies {
     implementation("com.github.haifengl:smile-kotlin:$smileVersion")
 
     testImplementation("org.amshove.kluent:kluent:$kluentVersion")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:1.3.72")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.4.21")
     testImplementation("junit:junit:4.12")
 }
 
