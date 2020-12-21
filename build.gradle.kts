@@ -8,8 +8,8 @@ plugins {
 
 group = "com.londogard"
 version = "1.0-SNAPSHOT"
-val kluentVersion = "1.64"
-val smileVersion = "2.6.0"
+val kluentVersion: String by project
+val smileVersion: String by project
 
 repositories {
     jcenter()
@@ -21,7 +21,6 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
-    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.4.20")
     implementation("com.github.haifengl:smile-nlp:$smileVersion")
     implementation("com.github.haifengl:smile-core:$smileVersion")
     implementation("com.github.haifengl:smile-kotlin:$smileVersion")

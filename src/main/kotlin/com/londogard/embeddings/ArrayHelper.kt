@@ -40,6 +40,11 @@ internal fun Array<Float>.mMul(weight: Float): Array<Float> {
 }
 
 internal fun Iterable<Array<Float>>.sumByColumns(): Array<Float> = reduce { agg, vector -> agg `++` vector }
+internal fun List<Array<Float>>.mean(): Array<Float> {
+    val first = (this.firstOrNull() ?: emptyArray())
+
+    return Array(first.size) { i -> sumOf { it[i].toDouble() }.toFloat() / size }
+}
 
 internal fun List<List<Double>>.mutableSumByCols(): List<Double> {
     val columnSum = MutableList(this[0].size) { 0.0 }
