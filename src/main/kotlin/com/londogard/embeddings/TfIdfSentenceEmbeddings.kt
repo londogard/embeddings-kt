@@ -5,7 +5,6 @@ import smile.nlp.bag
 import smile.nlp.tfidf
 import smile.nlp.vectorize
 
-
 /**
  * Not yet fully tested
  */
@@ -19,7 +18,7 @@ class TfIdfSentenceEmbeddings(private val embeddings: Embeddings) : SentenceEmbe
         val bags = corpus.map { vectorize(words.toTypedArray(), it) }
         val vectors = tfidf(bags)
         val vector = Matrix(vectors.toTypedArray()).colSums()
-        val vecMax = vector.max() ?: 1.0
+        val vecMax = vector.maxOrNull() ?: 1.0
 
         tfidfMap = vector
             .map { it / vecMax }

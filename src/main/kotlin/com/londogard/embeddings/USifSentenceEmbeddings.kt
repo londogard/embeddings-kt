@@ -8,7 +8,7 @@ class USifSentenceEmbeddings(
     private val embeddings: Embeddings,
     private val wordProb: Array<Float>,
     private val wordIndices: Map<String, Int>,
-    private val randomWalkLength: Int, // = n
+    randomWalkLength: Int, // = n
     private val numCommonDiscourseVector: Int = 5 // = m, 0 should work
 ) : SentenceEmbeddings {
     private val vocabSize = wordProb.size
@@ -20,7 +20,7 @@ class USifSentenceEmbeddings(
     private val charsToRemove: Set<Char> = setOf(';', '.', ':', '(', ')')
 
     init {
-        if (randomWalkLength < 0) throw IllegalArgumentException("randomWalklength must be greater than 0 (was: $randomWalkLength)")
+        if (randomWalkLength < 0) throw IllegalArgumentException("randomWalkLength must be greater than 0 (was: $randomWalkLength)")
     }
 
     private fun weight(word: String): Double = a / (0.5 * a + (wordIndices[word]?.let(wordProb::get) ?: 0f))
@@ -32,30 +32,8 @@ class USifSentenceEmbeddings(
             .replace("n't", "not")
             .split('-')
 
-    private fun toVector(sentence: String): Array<Float> {
-        return sentence
-            .split(' ') // TODO improve
-            .filterNot(punctRegex::matches)
-            .flatMap(this::preprocess)
-            .filter(embeddings.vocabulary::contains)
-            .let { tokens ->
-                if (tokens.isEmpty()) Array(embeddings.dimensions) { a.toFloat() }
-                else {
-                    tokens
-                        .mapNotNull(embeddings::vector)
-                        .map(Array<Float>::normalize)
-                        .mapIndexed { i, array ->
-                            array.mMul(weight(tokens[i]).toFloat())
-                        }.mean()
-
-                }
-            }
-    }
-
-    private fun project(a: Array<Float>, b: Array<Float>): Array<Float> = b.mMul(a.dot(b).toFloat())
-
-    private fun embed(sentences: List<String>): List<Array<Float>> {
-        val vectors = sentences.map(this::toVector)
+    override fun getSentenceEmbeddings(listOfTokens: List<List<String>>): List<Array<Float>> {
+        val vectors = listOfTokens.map(this::getSentenceEmbedding)
 
         return if (numCommonDiscourseVector == 0) vectors
         else {

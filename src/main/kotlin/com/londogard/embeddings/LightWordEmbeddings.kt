@@ -1,5 +1,7 @@
 package com.londogard.embeddings
 
+import com.londogard.embeddings.utils.DownloadHelper
+
 class LightWordEmbeddings(
     override val dimensions: Int = DownloadHelper.dimension,
     override val filename: String = DownloadHelper.embeddingPath,

@@ -1,5 +1,7 @@
-package com.londogard.embeddings
+package com.londogard.embeddings.utils
 
+import com.londogard.embeddings.NormAvgSentenceEmbeddings
+import com.londogard.embeddings.WordEmbeddings
 import smile.nlp.words
 import java.io.File
 import java.io.FileOutputStream

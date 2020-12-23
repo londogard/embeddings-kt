@@ -1,6 +1,6 @@
 package com.londogard.embeddings
 
-import java.nio.file.Files
+import com.londogard.embeddings.utils.DownloadHelper
 
 class WordEmbeddings(
     override val dimensions: Int = DownloadHelper.dimension,
