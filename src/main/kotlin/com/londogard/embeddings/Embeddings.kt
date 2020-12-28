@@ -1,5 +1,6 @@
 package com.londogard.embeddings
 
+import com.londogard.embeddings.utils.SimpleDistances
 import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.math.sqrt
@@ -34,28 +35,8 @@ abstract class Embeddings {
      * @return The Euclidean distance between the vector representations of the words.
      */
     fun euclidean(w1: String, w2: String): Double? = traverseVectors(listOf(w1, w2))?.let { vectors ->
-        if (vectors.size == 2) euclidean(vectors.first(), vectors.last())
+        if (vectors.size == 2) SimpleDistances.euclidean(vectors.first(), vectors.last())
         else null
-    }
-
-    /** Compute the Euclidean distance between two vectors.
-     * @param v1 The first vector.
-     * @param v2 The other vector.
-     * @return The Euclidean distance between the two vectors.
-     */
-    fun euclidean(v1: Array<Float>, v2: Array<Float>): Double =
-        (v1 `--` v2).let { vector -> sqrt(vector.dot(vector)) }
-
-    /** Compute the cosine similarity score between two vectors.
-     * 1.0 means equal, 0 = 90* & -1 is when they're opposite
-     * @param v1 The first vector.
-     * @param v2 The other vector.
-     * @return The cosine similarity score of the two vectors.
-     */
-    fun cosine(v1: Array<Float>, v2: Array<Float>): Double {
-        if (v1.size != v2.size) throw ArithmeticException("Vectors must be same size (v1: ${v1.size} != v2: ${v2.size}")
-
-        return v1.dot(v2) / (sqrt(v1.dot(v1)) * sqrt(v2.dot(v2)))
     }
 
     /** Compute the cosine similarity score between the vector representations of the words.
@@ -64,7 +45,7 @@ abstract class Embeddings {
      * @return The cosine similarity score between the vector representations of the words.
      */
     fun cosine(w1: String, w2: String): Double? = traverseVectors(listOf(w1, w2))?.let { vectors ->
-        if (vectors.size == 2) cosine(vectors.first(), vectors.last())
+        if (vectors.size == 2) SimpleDistances.cosine(vectors.first(), vectors.last())
         else null
     }
 
