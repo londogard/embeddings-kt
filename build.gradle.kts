@@ -9,7 +9,7 @@ plugins {
 
 group = "com.londogard"
 version = "1.0-SNAPSHOT"
-val kluentVersion = "1.61"
+val kluentVersion = "1.65"
 val smileVersion = "2.4.0"
 
 repositories {
