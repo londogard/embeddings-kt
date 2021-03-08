@@ -3,6 +3,8 @@
 # embeddings-kt
 A easy-to-use library for Word Embeddings for JVM (written in Kotlin)
 
+:warning: This project is archived in favour of https://github.com/londogard/londogard-nlp-toolkit :warning:
+
 ## Installation
 <details open>
 <summary><b>Jitpack</b> (the easiest)</summary>
