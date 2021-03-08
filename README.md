@@ -1,12 +1,15 @@
 [![](https://jitpack.io/v/com.londogard/embeddings-kt.svg)](https://jitpack.io/#com.londogard/embeddings-kt)<a href='https://ko-fi.com/O5O819SEH' target='_blank'><img height='22' style='border:0px;height:22px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-# embeddings-kt
-A easy-to-use library for Word Embeddings for JVM (written in Kotlin)
-
 :warning: This project is archived in favour of https://github.com/londogard/londogard-nlp-toolkit :warning:
 
 londogard-nlp-toolkit contains all "general" NLP utilties for Kotlin in a small package keeping dependencies low. Tools such as the summarizer will still be kept separate.
 Word Embedding functionality exists under `com.londogard.nlp.embeddings`! :)
+This library should continue to be functional though as the core logic is completed if you so wish.
+
+----
+
+# embeddings-kt
+A easy-to-use library for Word Embeddings for JVM (written in Kotlin)
 
 ## Installation
 <details open>
