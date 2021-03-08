@@ -2,8 +2,9 @@
 
 :warning: This project is archived in favour of https://github.com/londogard/londogard-nlp-toolkit :warning:
 
-londogard-nlp-toolkit contains all "general" NLP utilties for Kotlin in a small package keeping dependencies low. Tools such as the summarizer will still be kept separate.
+londogard-nlp-toolkit contains all "general" NLP utilties for Kotlin in a small package keeping dependencies low. Tools such as the summarizer will still be kept separate.  
 Word Embedding functionality exists under `com.londogard.nlp.embeddings`! :)
+
 This library should continue to be functional though as the core logic is completed if you so wish.
 
 ----
