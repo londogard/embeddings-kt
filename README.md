@@ -5,6 +5,9 @@ A easy-to-use library for Word Embeddings for JVM (written in Kotlin)
 
 :warning: This project is archived in favour of https://github.com/londogard/londogard-nlp-toolkit :warning:
 
+londogard-nlp-toolkit contains all "general" NLP utilties for Kotlin in a small package keeping dependencies low. Tools such as the summarizer will still be kept separate.
+Word Embedding functionality exists under `com.londogard.nlp.embeddings`! :)
+
 ## Installation
 <details open>
 <summary><b>Jitpack</b> (the easiest)</summary>
