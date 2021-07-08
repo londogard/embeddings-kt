@@ -1,5 +1,7 @@
-package com.londogard.embeddings
+package com.londogard.embeddings.utils
 
+import com.londogard.embeddings.NormAvgSentenceEmbeddings
+import com.londogard.embeddings.WordEmbeddings
 import smile.nlp.words
 import java.io.File
 import java.io.FileOutputStream
@@ -55,28 +57,5 @@ object DownloadHelper {
                     }
                 }
         }
-    }
-
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val embedding = WordEmbeddings(300, "/home/londet/git/embeddings-kt/src/main/resources/sv_300d.tsv")
-        val questions = javaClass.getResourceAsStream("/covid.tsv").reader().readLines().drop(1).map { it.split('\t').first().toLowerCase() }
-        //val sentences = listOf("dotter", "jävla skit", "son")
-        // embedding.addWords(questions.flatMap { it.split(" ") }.toSet())
-
-        val senEmb = NormAvgSentenceEmbeddings(embedding)
-        val embeddedSent = questions.map { it to senEmb.getSentenceEmbedding(it.words().toList()) }
-        var q: String? = ""
-        var qEmb: Array<Float> = emptyArray()
-        while (true) {
-            println("Question:\n> ")
-            q = readLine()
-            if (q!!.contains("exit")) exitProcess(0)
-            qEmb = senEmb.getSentenceEmbedding(q.words().toList())
-            println(embeddedSent.asSequence().map { it.first to embedding.cosine(it.second, qEmb) }.sortedByDescending { it.second }.take(5).toList().map { "${it.first}: ${it.second}" }.joinToString("\n"))
-        }
-        //val q = senEmb.getSentenceEmbedding("hur påverkas jag med astma?".words().toList())
-        //println(embeddedSent.asSequence().map { it.first to embedding.cosine(it.second, q) }.sortedByDescending { it.second }.take(5).toList().map { "${it.first}: ${it.second}" }.joinToString("\n"))
-        //embeddedSent.minBy {  }
     }
 }

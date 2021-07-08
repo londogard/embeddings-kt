@@ -1,6 +1,7 @@
 package com.londogard.embeddings
 
-import java.nio.file.Files
+import com.londogard.embeddings.utils.DownloadHelper
+import com.londogard.embeddings.utils.SimpleDistances
 
 class WordEmbeddings(
     override val dimensions: Int = DownloadHelper.dimension,
@@ -33,7 +34,7 @@ class WordEmbeddings(
 
         return embeddings
             .filterKeys(inputWords::contains)
-            .map { (k, v) -> k to cosine(vector, v) }
+            .map { (k, v) -> k to SimpleDistances.cosine(vector, v) }
             .sortedByDescending { (_, cosineDist) -> cosineDist }
             .take(N)
     }

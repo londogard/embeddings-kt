@@ -1,53 +1,40 @@
-import org.gradle.jvm.tasks.Jar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `maven-publish`
-    id("org.jetbrains.dokka") version "0.9.17"
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.21"
+    id("org.jetbrains.dokka") version "1.4.20"
 }
 
 group = "com.londogard"
 version = "1.0-SNAPSHOT"
-val kluentVersion = "1.61"
-val smileVersion = "2.4.0"
+val kluentVersion: String by project
+val smileVersion: String by project
 
 repositories {
     jcenter()
     google()
     mavenCentral()
-    maven("https://dl.bintray.com/kotlin/kotlin-dev/")
+    maven("https://jitpack.io")
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-
+    implementation("com.github.londogard:londogard-nlp-toolkit:main-SNAPSHOT")
     implementation("com.github.haifengl:smile-nlp:$smileVersion")
     implementation("com.github.haifengl:smile-core:$smileVersion")
     implementation("com.github.haifengl:smile-kotlin:$smileVersion")
 
     testImplementation("org.amshove.kluent:kluent:$kluentVersion")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:1.3.72")
-    testImplementation("junit:junit:4.12")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.4.21")
+    testImplementation(kotlin("test-junit"))
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+tasks.test {
+    useJUnit()
 }
+
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
-}
-
-tasks.dokka {
-    outputFormat = "html"
-    outputDirectory = "$buildDir/javadoc"
-}
-
-val dokkaJar by tasks.creating(Jar::class) {
-    group = JavaBasePlugin.DOCUMENTATION_GROUP
-    description = "Assembles Kotlin docs with Dokka"
-    classifier = "javadoc"
-    from(tasks.dokka)
 }
 
 publishing {
